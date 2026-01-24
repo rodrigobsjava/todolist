@@ -1,22 +1,53 @@
 /* Estilo base do tema escuro */
 body.dark-mode {
-    background-color: #121212 !important;
-    color: #f5f5f5 !important;
+	background-color: #121212 !important;
+	color: #f5f5f5 !important;
 }
 
-body.dark-mode .form-control,
-body.dark-mode .list-group-item,
-body.dark-mode .card {
-    background-color: #1e1e1e !important;
-    color: #f5f5f5 !important;
-    border-color: #333 !important;
+body.dark-mode .form-control, body.dark-mode .list-group-item, body.dark-mode .card
+	{
+	background-color: #1e1e1e !important;
+	color: #f5f5f5 !important;
+	border-color: #333 !important;
 }
 
 body.dark-mode a {
-    color: #66b0ff !important;
+	color: #66b0ff !important;
 }
 
 body.dark-mode .btn-outline-danger {
-    color: #f5f5f5 !important;
-    border-color: #dc3545 !important;
+	color: #f5f5f5 !important;
+	border-color: #dc3545 !important;
 }
+
+/* PÁGINA LOGIN */
+
+.body-login{
+    background-color: aqua;
+    width: 100%;	
+}
+
+.container {
+	height: 100dvh;
+	width: 100dvw;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+.content-main {
+	margin-top: 8%;	
+}
+
+.form {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 30px;
+}
+
+/* PÁGINA DASHBOARD */
+
+/* PÁGINA FORM-TASK */
+
+/* PÁGINA REGISTER */
+
+/* PÁGINA ERROR */

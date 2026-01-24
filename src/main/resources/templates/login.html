@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,28 +10,28 @@
 	<link id="app-icon" rel="icon" type="image/png" th:href="@{/img/icon-light.png}" />
 	
 </head>
-<body class="bg-light">
+<body class="bg-light body-login">
 
-<div class="container py-5">
+<div class="container">
 	<div class="text-end mb-3">
     	<button id="toggle-theme" class="btn btn-sm btn-secondary">
         	<i class="bi bi-moon me-1"></i>
     	</button>
 	</div>
 	
-    <div class="row justify-content-center">
+    <div class="row justify-content-center content-main">
         <div class="col-12 col-sm-8 col-md-6 col-lg-4">
             <h2 class="text-center mb-4"><i class="bi bi-person-circle me-2"></i>Login</h2>
 
-            <form th:action="@{/login}" method="post">
+            <form th:action="@{/login}" method="post" class="form">
                 <div class="mb-3">
-                    <label class="form-label">Usuário</label>
-                    <input type="text" name="username" class="form-control" required />
+                    <label for="username" class="form-label">Usuário</label>
+                    <input type="text" id="username" name="username" class="form-control" required />
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Senha</label>
-                    <input type="password" name="password" class="form-control" required />
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" id="password" name="password" class="form-control" required />
                 </div>
 
                 <div class="d-grid">
