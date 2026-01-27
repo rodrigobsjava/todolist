@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.todolist.entity.Task;
 import com.example.todolist.entity.User;
@@ -27,9 +28,14 @@ public class TaskController {
     private UserService userService;
 
     @GetMapping
-    public String listTasks(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+    public String listTasks(Model model, @AuthenticationPrincipal UserDetails userDetails, @RequestParam(defaultValue = "0") int page) {
         User user = userService.findByUsername(userDetails.getUsername()).orElseThrow();
-        model.addAttribute("tasks", taskService.getTasks(user));
+        var taskPage = taskService.getTasksPaginated(user, page);
+        
+//        model.addAttribute("tasks", taskService.getTasks(user));
+        model.addAttribute("tasks", taskPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", taskPage.getTotalPages());
         return "dashboard";
     }
 
@@ -45,6 +51,12 @@ public class TaskController {
         task.setUser(user);
         taskService.save(task);
         return "redirect:/tasks";
+    }
+    
+    @PostMapping("/{id}/toggle-status")
+    public String toggleTaskStatus(@PathVariable Long id) {
+    	taskService.toggleStatus(id);
+    	return "redirect:/tasks";
     }
 
     @GetMapping("/edit/{id}")
