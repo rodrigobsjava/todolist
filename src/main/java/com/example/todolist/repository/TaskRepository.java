@@ -1,5 +1,7 @@
 package com.example.todolist.repository;
 
+import java.util.UUID;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +11,8 @@ import com.example.todolist.entity.Task;
 import com.example.todolist.entity.User;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends JpaRepository<Task, UUID> {
     Page<Task> findByUser(User user, Pageable pageable );
 }
+
+

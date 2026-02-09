@@ -1,0 +1,7 @@
+services:
+  postgres:
+    ports: []
+    
+  app:
+    environment:
+      SPRING_PROFILES_ACTIVE: prod

@@ -1,12 +1,30 @@
-# Etapa de build com Maven e JDK 21
+# ---------- build ----------
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
 
-# Etapa de execução com JDK 21
-FROM eclipse-temurin:21-jdk
+COPY pom.xml .
+RUN mvn -q -DskipTests dependency:go-offline
+
+COPY . .
+RUN mvn -q -DskipTests clean package
+
+# ---------- runtime ----------
+FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+
+# healthcheck no compose usa curl
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends curl \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN addgroup --system --gid 10001 app \
+  && adduser --system --uid 10001 --ingroup app --home /app app
+
+COPY --from=build --chown=app:app /app/target/*.jar /app/app.jar
+
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+USER app
+ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75 -XX:+UseG1GC"
+
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

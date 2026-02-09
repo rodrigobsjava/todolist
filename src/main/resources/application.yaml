@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: todolist
+
+  thymeleaf:
+    cache: false
+
+  jackson:
+    time-zone: America/Sao_Paulo
+    default-property-inclusion: non-null
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+server:
+  port: 8080
+  shutdown: graceful
+  error:
+    include-message: never
+    include-binding-errors: never
+    include-stacktrace: never
+    include-exception: false

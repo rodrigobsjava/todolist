@@ -6,9 +6,13 @@ body.dark-mode {
 	color: #f5f5f5 !important;
 }
 
-body.dark-mode .form-control, body.dark-mode .list-group-item, body.dark-mode .card,
-	body.dark-mode .page-login .form, body.dark-mode .page-form-task .card
-	{
+body.dark-mode .form-control, 
+body.dark-mode .list-group-item, 
+body.dark-mode .card,
+body.dark-mode .page-login .form, 
+body.dark-mode .page-form-task .card,
+body.dark-mode .page-login .card
+{
 	background-color: #1e1e1e !important;
 	color: #f5f5f5 !important;
 	border-color: #333 !important;
@@ -35,6 +39,12 @@ body {
 	cursor: pointer;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 /* =====================================================
    PÁGINA LOGIN
    ===================================================== */
@@ -47,14 +57,16 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 16px;
 }
 
+/* card do form */
 .page-login .form {
 	width: 100%;
 	max-width: 420px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
-	padding: 30px;
+	padding: 24px;
 	background-color: #ffffff;
 }
 
@@ -65,14 +77,25 @@ body {
 	margin: 0 6px;
 }
 
+@media(max-width: 576px){
+	.page-login .form {
+		padding: 18px;
+		border-radius: 12px;
+	}
+}
+
 /* =====================================================
    PÁGINA DASHBOARD
    ===================================================== */
+   
+/* melhora leitura quando cresce lista */   
 .page-dashboard .list-group-item {
 	border-radius: 0.5rem;
 	margin-bottom: 0.5rem;
 }
 
+
+/* título e descrição */
 .page-dashboard .list-group-item h5 {
 	margin-bottom: 0.25rem;
 }
@@ -99,6 +122,23 @@ body {
 	margin-top: 1.5rem;
 }
 
+/* Mobile dashboard: ações quebram bem e não esmagam */
+@media (max-width: 576px) {
+  .page-dashboard .list-group-item {
+    padding: 14px;
+  }
+
+  /* melhora espaçamento entre o bloco texto e ações */
+  .page-dashboard .list-group-item .mt-3 {
+    margin-top: 12px !important;
+  }
+
+  /* deixa botões mais fáceis de clicar */
+  .page-dashboard .btn.btn-sm {
+    padding: 0.45rem 0.65rem;
+  }
+}
+
 /* =====================================================
    PÁGINA FORM-TASK
    ===================================================== */
@@ -110,6 +150,15 @@ body {
 	resize: vertical;
 }
 
+/* Mobile form-task: evita ficar “apertado” */
+@media (max-width: 576px) {
+  .page-form-task .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+
 /* =====================================================
    PÁGINA REGISTER
    ===================================================== */
@@ -117,6 +166,17 @@ body {
 	max-width: 500px;
 	margin: auto;
 }
+
+/* Mobile register: garante padding confortável */
+@media (max-width: 576px) {
+  .page-register .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+
+
 
 /* =====================================================
    PÁGINA ERROR
@@ -132,4 +192,10 @@ body {
 .page-error h1 {
 	font-size: 3rem;
 	margin-bottom: 1rem;
+}
+
+@media (max-width: 576px) {
+  .page-error h1 {
+    font-size: 2.2rem;
+  }
 }

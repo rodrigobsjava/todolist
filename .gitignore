@@ -29,4 +29,7 @@ Thumbs.db
 
 # Credenciais locais
 .env
+.env.dev
+.env.docker
+
 
