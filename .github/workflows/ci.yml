@@ -46,7 +46,7 @@ jobs:
         run: chmod +x mvnw
 
       - name: Compilar projeto
-        run: ./mvnw clean compile
+        run: ./mvnw clean compile -DskipTests
 
       - name: Executar testes
         run: ./mvnw test
